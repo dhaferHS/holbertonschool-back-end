@@ -27,4 +27,5 @@ if __name__ == "__main__":
         for task in todos.json():
             if task.get('userId') == int(userId):
                 writer.writerow(
-                    [userId, name, str(task.get('completed')), task.get('title')])
+                    [userId, name, str(task.get('completed')),
+                     task.get('title')])
