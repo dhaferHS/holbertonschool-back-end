@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """exports data in the JSON format"""
 
