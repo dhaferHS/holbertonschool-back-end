@@ -8,26 +8,19 @@ import sys
 
 
 if __name__ == "__main__":
-
-    userId = sys.argv[1]
-    user = requests.get(
-        "https://jsonplaceholder.typicode.com/users/{}".format(userId))
-
-    todos = user = requests.get('https://jsonplaceholder.typicode.com/todos/')
-    todos = todos.json()
-
-    todoUser = {}
-    tasklist = []
+    url = "https://jsonplaceholder.typicode.com/"
+    user = requests.get(url + "users/{}".format(sys.argv[1])).json()
+    todos = requests.get(url + "todos",
+                         params={"userId": sys.argv[1]}).json()
 
     for task in todos:
-        if task.get('userId') == int(userId):
-            taskDict = {
-                "task": task.get('title'),
-                "completed": task.get('completed'),
-                "username": user.json().get('username')}
-            taskList.append(taskDict)
-            todoUser[userId] = tasklist
 
-        filename = userId + '.json'
-        with open(filename, mode='w') as f:
-            json.dump(todoUser, f)
+        taskDict = {
+            "task": task.get('title'),
+            "completed": task.get('completed'),
+            "username": user.get('username')}
+
+    filename = sys.argv[1] + '.json'
+
+    with open(filename, mode='w') as f:
+        json.dump(taskDict, f)
