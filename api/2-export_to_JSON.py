@@ -12,7 +12,6 @@ if __name__ == "__main__":
     userId = sys.argv[1]
     user = requests.get(
         "https://jsonplaceholder.typicode.com/users/{}".format(userId))
-    name = user.json().get('username')
 
     todos = user = requests.get('https://jsonplaceholder.typicode.com/todos/')
     todos = todos.json()
@@ -25,7 +24,7 @@ if __name__ == "__main__":
             taskDict = {
                 "task": task.get('title'),
                 "completed": task.get('completed'),
-                "username": user.jason().get('username')}
+                "username": user.json().get('username')}
             taskList.append(taskDict)
             todoUser[userId] = tasklist
 
